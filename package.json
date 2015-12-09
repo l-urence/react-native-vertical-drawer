@@ -1,0 +1,24 @@
+{
+  "name": "react-native-vertical-drawer",
+  "version": "0.0.1",
+  "description": "Pulldown drawer for react-native",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/l-urence/react-native-vertical-drawer.git"
+  },
+  "keywords": [
+    "react-native",
+    "vertical drawer",
+    "pulldown drawer"
+  ],
+  "author": "Laurence Bortfeld",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/l-urence/react-native-vertical-drawer/issues"
+  },
+  "homepage": "https://github.com/l-urence/react-native-vertical-drawer#readme"
+}
