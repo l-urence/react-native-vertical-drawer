@@ -37,6 +37,11 @@ var VerticalDrawer = React.createClass({
      */
     dragHandle: React.PropTypes.node,
     /**
+     * These styles will be applied to the drag area below the
+     * drawer view. This will overwrite the default styles.
+     */
+    dragStyle: View.propTypes.style,
+    /**
      * A boolean which indicates if the drawer is open or closed.
      * If this propery changed after the first render it will open
      * or close the drawer with an animation.
@@ -116,7 +121,13 @@ var VerticalDrawer = React.createClass({
 
   render() {
     var { contentHeight, drawerHeight, pos: translateY } = this.state;
-    var { children, contentContainerStyle, drawer, style } = this.props;
+    var {
+      children,
+      contentContainerStyle,
+      dragStyleStyle,
+      drawer,
+      style
+    } = this.props;
 
     // Use window height to prevent jitter, if content height
     // has been updated.
@@ -131,7 +142,7 @@ var VerticalDrawer = React.createClass({
         <View style={[contentStyle, contentContainerStyle]}>
           {children}
           <Animated.View
-            style={styles.drag}
+            style={[styles.drag, dragStyle]}
             {...this._panResponder.panHandlers}
           >
             {this.props.dragHandle || <Handle />}
