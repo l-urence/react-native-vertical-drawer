@@ -124,7 +124,7 @@ var VerticalDrawer = React.createClass({
     var {
       children,
       contentContainerStyle,
-      dragStyleStyle,
+      dragStyle,
       drawer,
       style
     } = this.props;
