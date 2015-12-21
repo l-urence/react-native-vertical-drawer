@@ -141,12 +141,11 @@ var VerticalDrawer = React.createClass({
         <View style={style}>{drawer}</View>
         <View style={[contentStyle, contentContainerStyle]}>
           {children}
-          <Animated.View
+          <View
             style={[styles.drag, dragStyle]}
             {...this._panResponder.panHandlers}
           >
             {this.props.dragHandle || <Handle />}
-          </Animated.View>
         </View>
       </Animated.View>
     );
