@@ -13,7 +13,7 @@ var updateHeight = once(function(e, style) {
   var { padding, paddingBottom, paddingTop } = flattenStyle(style);
   var offset = (padding || 0) + (paddingBottom || 0) + (paddingTop || 0);
 
-  // To enable padding[Bottom|Top] in the content container at the
+  // To enable padding[Bottom|Top] in the content container add the
   // padding value to the fixed container height as offset.
   var contentHeight = e.nativeEvent.layout.height + offset;
   this.setState({contentHeight});
