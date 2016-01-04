@@ -99,7 +99,11 @@ var VerticalDrawer = React.createClass({
 
   componentWillReceiveProps(nextProps) {
     var { open } = this.props;
-    open && nextProps.open ? this._open() : this._close();
+    if (open && !nextProps.open) {
+      this._close();
+    } else if (!open && nextProps.open) {
+      this._open();
+    }
   },
 
   _close() {
