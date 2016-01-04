@@ -146,6 +146,7 @@ var VerticalDrawer = React.createClass({
             {...this._panResponder.panHandlers}
           >
             {this.props.dragHandle || <Handle />}
+          </View>
         </View>
       </Animated.View>
     );
