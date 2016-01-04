@@ -42,6 +42,19 @@ var VerticalDrawer = React.createClass({
      */
     dragStyle: View.propTypes.style,
     /**
+     * Will be called when the drag motion ended and infrom about
+     * the currend drawer state (opened / closed).
+     *
+     * ### Example:
+     *
+     * ```
+     * onDragEnd={isOpen => this.setState({
+     *   isVerticalDrawerOpen: isOpen
+     * })}
+     * ```
+     */
+    onDragEnd: View.propTypes.func,
+    /**
      * A boolean which indicates if the drawer is open or closed.
      * If this propery changed after the first render it will open
      * or close the drawer with an animation.
@@ -92,7 +105,14 @@ var VerticalDrawer = React.createClass({
       onPanResponderRelease: (e, gestureState) => {
         var { drawerHeight, open, pos } = this.state;
         pos.flattenOffset();
-        pos._value < -drawerHeight / 5 ? this._close() : this._open();
+
+        if(pos._value < -drawerHeight / 5) {
+          this.props.onDragEnd && this.props.onDragEnd(!open);
+          this._close();
+        } else {
+          this.props.onDragEnd && this.props.onDragEnd(!open);
+          this._open();
+        }
       }
     });
   },
@@ -105,7 +125,6 @@ var VerticalDrawer = React.createClass({
   _close() {
     var height = this.state.drawerHeight;
     var config = { easing: Easing.out(Easing.circle), duration: 100 };
-
     Animated.timing(this.state.pos, {
       toValue: -height, ...config
     }).start(() => this.setState({open: false}));
@@ -113,10 +132,9 @@ var VerticalDrawer = React.createClass({
 
   _open() {
     var config = { easing: Easing.inOut(Easing.quad), duration: 250 };
-
     Animated.timing(this.state.pos, {
       toValue: 0, ...config
-    }).start(() => this.setState({open: true}));;;
+    }).start(() => this.setState({open: true}));
   },
 
   render() {
