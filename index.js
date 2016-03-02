@@ -2,7 +2,6 @@
 
 var Handle = require('./DefaultHandle');
 var React = require('react-native');
-var flattenStyle = require('flattenStyle');
 var invariant = require('invariant');
 var { Animated, Dimensions, Easing, PanResponder, StyleSheet, View } = React;
 var { once } = require('./utils');
@@ -10,7 +9,7 @@ var { once } = require('./utils');
 const WINDOW_HEIGHT = Dimensions.get('window').height;
 
 var updateHeight = once(function(e, style) {
-  var { padding, paddingBottom, paddingTop } = flattenStyle(style);
+  var { padding, paddingBottom, paddingTop } = StyleSheet.flatten(style);
   var offset = (padding || 0) + (paddingBottom || 0) + (paddingTop || 0);
 
   // To enable padding[Bottom|Top] in the content container add the
@@ -60,7 +59,7 @@ var VerticalDrawer = React.createClass({
 
   getInitialState() {
     var { open, style } = this.props;
-    var { height } = flattenStyle(style);
+    var { height } = StyleSheet.flatten(style);
 
     // TODO: Right now the drawer's height needs do be set via style
     // to allow a closed drawer after mount. It would be nice to
